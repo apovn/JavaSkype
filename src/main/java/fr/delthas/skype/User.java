@@ -246,7 +246,11 @@ public class User {
       }
     }
   }
-  
+
+  public Skype getSkype() {
+    return skype;
+  }
+
   @Override
   public int hashCode() {
     final int prime = 31;

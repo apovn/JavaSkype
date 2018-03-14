@@ -164,7 +164,7 @@ public class Group {
   public boolean isSelfAdmin() {
     User self = skype.getSelf();
     for (Pair<User, Role> pair : users) {
-      if (pair.getFirst().equals(self)) {
+      if (pair.getFirst().getSkype().getSelf().equals(self)) {
         return pair.getSecond() == Role.ADMIN;
       }
     }

@@ -118,7 +118,7 @@ class WebConnector {
     String userAvatarUrl = null;
     try {
       if (!newContactType) {
-        userUsername = userJSON.getString("username");
+        userUsername = userJSON.optString("username");
         userFirstName = userJSON.optString("firstname", null);
         userLastName = userJSON.optString("lastname", null);
         userMood = userJSON.optString("mood", null);
