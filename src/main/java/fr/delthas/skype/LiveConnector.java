@@ -70,7 +70,15 @@ class LiveConnector {
             }
         }
 
+        logger.info("============ Before send Post request ===============");
+        logger.info("postUrl: " + postUrl);
+        logger.info("PPFT: " + PPFT);
+        logger.info("username: " + username);
+        logger.info("password: " + password);
         Response post = Jsoup.connect(postUrl).data("PPFT", PPFT, "login", username, "passwd", password).cookie("MSPOK", MSPOK).maxBodySize(100 * 1024 * 1024).timeout(10000).method(Method.POST).followRedirects(false).ignoreContentType(true).ignoreHttpErrors(true).execute();
+        logger.info("============ After send Post request ===============");
+        logger.info("post result: " + post);
+
         if (post.statusCode() != 302) {
             int index = post.body().indexOf("sErrTxt:'");
             int end;
