@@ -106,6 +106,9 @@ Note that this API doesn't support multithreaded calls: if you want to go for so
 
 Simply run ```mvn install```.
 
+## Execute main with Maven
+mvn exec:java -Dexec.mainClass="fr.delthas.skype.TestConnect"
+
 ## Misceallenous
 
 ### Tech
