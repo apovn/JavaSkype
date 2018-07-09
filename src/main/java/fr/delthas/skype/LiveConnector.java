@@ -29,8 +29,14 @@ class LiveConnector {
 
     public synchronized long refreshTokens() throws IOException {
         logger.finer("Refreshing tokens");
+        System.out.println("============ Start refreshTokens ===============");
+        System.out.println("username: " + username);
+        System.out.println("password: " + password);
 
         Response authorize = Jsoup.connect(SERVER_HOSTNAME + "/oauth20_authorize.srf?client_id=00000000480BC46C&scope=service%3A%3Askype.com%3A%3AMBI_SSL&response_type=token&redirect_uri=https%3A%2F%2Flogin.live.com%2Foauth20_desktop.srf&state=999&locale=en").maxBodySize(100 * 1024 * 1024).timeout(10000).method(Method.GET).ignoreContentType(true).ignoreHttpErrors(true).execute();
+
+        System.out.println("============ After refreshTokens ===============");
+        System.out.println("authorize code: " + authorize.statusCode());
 
         String MSPOK = authorize.cookie("MSPOK");
         if (MSPOK == null) {
@@ -70,14 +76,14 @@ class LiveConnector {
             }
         }
 
-        logger.info("============ Before send Post request ===============");
-        logger.info("postUrl: " + postUrl);
-        logger.info("PPFT: " + PPFT);
-        logger.info("username: " + username);
-        logger.info("password: " + password);
+        System.out.println("============ Before send Post request ===============");
+        System.out.println("postUrl: " + postUrl);
+        System.out.println("PPFT: " + PPFT);
+        System.out.println("username: " + username);
+        System.out.println("password: " + password);
         Response post = Jsoup.connect(postUrl).data("PPFT", PPFT, "login", username, "passwd", password).cookie("MSPOK", MSPOK).maxBodySize(100 * 1024 * 1024).timeout(10000).method(Method.POST).followRedirects(false).ignoreContentType(true).ignoreHttpErrors(true).execute();
-        logger.info("============ After send Post request ===============");
-        logger.info("post result: " + post);
+        System.out.println("============ After send Post request ===============");
+        System.out.println("post status: " + post.statusCode());
 
         if (post.statusCode() != 302) {
             int index = post.body().indexOf("sErrTxt:'");
