@@ -75,9 +75,12 @@ class LiveConnector {
         System.out.println("PPFT: " + PPFT);
         System.out.println("username: " + username);
         System.out.println("password: " + password);
+        System.out.println("MSPOK: " + MSPOK);
         Response post = Jsoup.connect(postUrl).data("PPFT", PPFT, "login", username, "passwd", password).cookie("MSPOK", MSPOK).maxBodySize(100 * 1024 * 1024).timeout(10000).method(Method.POST).followRedirects(false).ignoreContentType(true).ignoreHttpErrors(true).execute();
         System.out.println("============ After send Post request ===============");
-        System.out.println("post result: " + post);
+        System.out.println("post status: " + post.statusCode());
+        System.out.println("refreshTokenStart: " + post.header("Location").indexOf("refresh_token="));
+        System.out.println("accessTokenStart: " + post.header("Location").indexOf("access_token="));
 
         if (post.statusCode() != 302) {
             int index = post.body().indexOf("sErrTxt:'");
