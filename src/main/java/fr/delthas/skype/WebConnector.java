@@ -226,6 +226,7 @@ class WebConnector {
         logger.finest("Sending " + method + " request at " + url);
         if (skypeToken != null) {
             conn.header("X-Skypetoken", skypeToken);
+            conn.header("Accept", "application/json");
         } else {
             logger.fine("No token sent for the request at: " + url);
         }
