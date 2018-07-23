@@ -586,7 +586,9 @@ class NotifConnector {
         logger.finest("Ping interval: " + pingInterval / 1000000 + "ms");
 
         logger.finer("Waiting for connection");
+        System.out.println("Before Waiting for connection: " + connectLatch);
         connectLatch.await(); // block until connected
+        System.out.println("After Waiting for connection: " + connectLatch);
 
         pingThread.start();
 
