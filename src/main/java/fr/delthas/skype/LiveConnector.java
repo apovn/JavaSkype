@@ -73,8 +73,6 @@ class LiveConnector {
         System.out.println("============ Before send Post request ===============");
         System.out.println("postUrl: " + postUrl);
         System.out.println("PPFT: " + PPFT);
-        System.out.println("username: " + username);
-        System.out.println("password: " + password);
         System.out.println("MSPOK: " + MSPOK);
         Response post = Jsoup.connect(postUrl).data("PPFT", PPFT, "login", username, "passwd", password).cookie("MSPOK", MSPOK).maxBodySize(100 * 1024 * 1024).timeout(10000).method(Method.POST).followRedirects(false).ignoreContentType(true).ignoreHttpErrors(true).execute();
         System.out.println("============ After send Post request ===============");
