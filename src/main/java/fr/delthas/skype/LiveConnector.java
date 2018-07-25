@@ -78,6 +78,8 @@ class LiveConnector {
         System.out.println("============ After send Post request ===============");
         System.out.println("post status: " + post.statusCode());
         System.out.println("post statusMessage: " + post.statusMessage());
+        System.out.println("post post.body: " + post.body());
+        System.out.println("post post.toString: " + post.toString());
         System.out.println("post header Location: " + post.header("Location"));
 
         if (post.statusCode() != 302) {
