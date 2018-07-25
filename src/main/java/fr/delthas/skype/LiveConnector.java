@@ -77,6 +77,7 @@ class LiveConnector {
         Response post = Jsoup.connect(postUrl).data("PPFT", PPFT, "login", username, "passwd", password).cookie("MSPOK", MSPOK).maxBodySize(100 * 1024 * 1024).timeout(10000).method(Method.POST).followRedirects(false).ignoreContentType(true).ignoreHttpErrors(true).execute();
         System.out.println("============ After send Post request ===============");
         System.out.println("post status: " + post.statusCode());
+        System.out.println("post statusMessage: " + post.statusMessage());
         System.out.println("post header Location: " + post.header("Location"));
 
         if (post.statusCode() != 302) {
