@@ -4,8 +4,8 @@ package fr.delthas.skype;
 public class TestConnect {
 
     public static final String USERNAME = "ductritran@gmail.com";
-    public static final String PASSWORD = "";
-    public static final String SEND_TO_ACCOUNT = "";
+    public static final String PASSWORD = "!&@";
+    public static final String SEND_TO_ACCOUNT = "-";
 
     // @Test (Disable it until a special test account is created)
     public void testConnect() {
@@ -16,7 +16,11 @@ public class TestConnect {
 
             for (User user : skype.getContacts()) {
                 System.out.println(user);
-                if (user.getUsername().equalsIgnoreCase(transformUsername(SEND_TO_ACCOUNT))) {
+
+                if (user.getUsername().equalsIgnoreCase(SEND_TO_ACCOUNT)) { // exactly equal to skypeId
+                    user.sendMessage("Hi, " + user.getDisplayName() + ", what's up?");
+                    System.out.println("Sent to: " + user.getUsername() + " successfully.");
+                } else if (user.getUsername().equalsIgnoreCase(transformUsername(SEND_TO_ACCOUNT))) {
                     user.sendMessage("Hi, " + user.getDisplayName() + ", what's up?");
                     System.out.println("Sent to: " + user.getUsername() + " successfully.");
                 }
